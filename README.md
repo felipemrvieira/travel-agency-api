@@ -48,7 +48,7 @@ npx sequelize-cli db:migrate
 ## Executar o Servidor
 
 ```sh
-node server
+npm run start
 ```
 
 O servidor estará rodando em http://localhost:3000.
