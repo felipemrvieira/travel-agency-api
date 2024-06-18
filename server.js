@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const { sequelize } = require("./models");
 const agencyRoutes = require("./routes/agencyRoutes");
+const { swaggerUi, specs } = require("./swagger"); // Importar configuração do Swagger
 
 const app = express();
 const port = 3000;
@@ -11,6 +12,9 @@ app.use(bodyParser.json());
 
 // Rotas
 app.use("/agencies", agencyRoutes);
+
+// Rota para a documentação do Swagger
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
 // Sincronizar com o banco de dados e iniciar o servidor
 sequelize
