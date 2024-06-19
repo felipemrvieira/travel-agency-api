@@ -1,11 +1,15 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 const { sequelize } = require("./models");
 const agencyRoutes = require("./routes/agencyRoutes");
-const { swaggerUi, specs } = require("./swagger"); // Importar configuração do Swagger
+const { swaggerUi, specs } = require("./swagger");
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+// Middleware para permitir CORS
+app.use(cors()); // Habilitar CORS para todas as rotas
 
 // Middleware para parsear JSON
 app.use(bodyParser.json());
@@ -30,4 +34,4 @@ if (process.env.NODE_ENV !== "test") {
         });
 }
 
-module.exports = app;
+module.exports = app; // Exportar app para testes
